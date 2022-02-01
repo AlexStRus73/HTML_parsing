@@ -2,30 +2,31 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import java.io.*;
 import java.util.*;
+import java.util.logging.*;
 
 public class main {
+   // private static Logger log = Logger.getLogger(main.class.getName());
+
+  /*  handlers = java.util.logging.FileHandler
+    .level= WARNING
+    java.util.logging.FileHandler.pattern = application_log.txt
+    java.util.logging.FileHandler.limit = 1000000
+    java.util.logging.FileHandler.count = 5
+    java.util.logging.FileHandler.formatter = java.util.logging.SimpleFormatter*/
 
     public static void main(String[] args) {
         System.out.println("Please, input web adress...");
         Scanner scanner = new Scanner(System.in);
         incertURL incert = new incertURL(scanner.nextLine());
+        textFormat form = new textFormat();
         scanner.close();
-        HashMap<String,Integer > Names = new HashMap<>();
 
         try{
             if (!incert.getURL().isEmpty()) {
                 Document doc = Jsoup.connect(incert.getURL()).get();
                 String text = doc.text();                            // получаем текст страницы
-                for (String retval : text.split("\\s*(\\s|,|\\.|!|\\?|\\\"|\\;|\\:|\\[|\\]|\\(|\\)|\n|\r|\t)\\s*")) {
-                    if (Names.containsKey(retval)) {                //если значение ключа ранее уже было внесено - прибавляй 1
-                        int Name = Names.get(retval);
-                        Names.put(retval,(Name+1));
-                    } else {Names.put(retval, 1);}                  //иначе вносим
-                }
-                for (Map.Entry entry: Names.entrySet()) {           //вывод HashMap в консоль
-                    System.out.println(entry);
-                }
-                }
+                form.parseFormat(text);
+            }
         } catch(IOException e){
         System.out.println("Ошибка ввода/вывода: "+ e);
     }
@@ -34,5 +35,5 @@ public class main {
 
 
 
-// ' ', ',', '.', '!', '?', '"', ';', ':', '[', ']', '(', ')', '\n', '\r', '\t'
+
 //https://simbirsoft.com

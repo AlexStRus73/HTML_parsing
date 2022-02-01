@@ -1,12 +1,15 @@
 public class incertURL {
-    private String URL;
+    private String url;
 
-    public incertURL (String URL){              //Объявляем конструктор
-        if (validURL(URL)) this.URL = URL;
-        else this.URL = "";
+    public incertURL (String URL){
+        if (validURL(URL)) this.url = URL;
+        else this.url = "";
     }
 
-    public boolean validURL (String URL) {      // Метод, проверяющий URL на валидность
+    /**
+     * Метод, проверяющий URL на валидность.
+     */
+    public boolean validURL (String URL) {
         if(URL.matches("^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]")) {
             System.out.println("String contains URL");
             return true;
@@ -19,7 +22,7 @@ public class incertURL {
 
 
     public String getURL () {
-        return URL;
+        return url;
     }
 
 }
