@@ -3,7 +3,6 @@ import org.jsoup.nodes.Document;
 import java.io.*;
 import java.util.*;
 
-
 public class main {
 
     public static void main(String[] args) {
@@ -25,7 +24,3 @@ public class main {
     }
 }
 
-
-
-
-//https://simbirsoft.com
